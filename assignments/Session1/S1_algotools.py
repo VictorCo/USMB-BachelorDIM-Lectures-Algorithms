@@ -189,7 +189,7 @@ def sort_selective(list_in) :
             permutation += 1
 
     if __debug__ :
-        print "(DEBUG)sort selective : \nlength : {}\ncompare : {}\npermutation : {}".format(len(list_in), compare, permutation)
+        print("(DEBUG)sort selective : \nlength : {}\ncompare : {}\npermutation : {}".format(len(list_in), compare, permutation))
         
     return list_in
 
@@ -231,15 +231,15 @@ def sort_bubble(list_in) :
                 list_in[j], list_in[j+1] = list_in[j+1], list_in[j]
                 
     if __debug__ :
-        print "(DEBUG)sort bubble : \nlength : {}\ncompare : {}\npermutation : {}".format(len(list_in), compare, permutation)
+        print("(DEBUG)sort bubble : \nlength : {}\ncompare : {}\npermutation : {}".format(len(list_in), compare, permutation))
              
     return list_in
 
 
 #running time
-print average_above_zero([1,2,3.2,"zpefk"])
-print max_value([1])
-print reverse_table([1,2,3,4,5])
+print(average_above_zero([1,2,3.2,"zpefk"]))
+print(max_value([1]))
+print(reverse_table([1,2,3,4,5]))
 
 tab = numpy.array([[0,0,0],
                    [0,0,0],
@@ -247,24 +247,24 @@ tab = numpy.array([[0,0,0],
                    [1,0,0],
                    [1,0,0],
                    [1,0,0]])
-print roi_bbox(tab)
+print(roi_bbox(tab))
 
 chartab = numpy.chararray((10,14))
 chartab[:] = "O"
 random_fill_sparse(chartab, 42)
-print chartab
+print(chartab)
 
 word = "\rzpzke\n    zepfok  \tfkpzeofk   "
-print remove_whitespace(word)
+print(remove_whitespace(word))
 
 list_to_shuffle = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-print shuffle(list_to_shuffle)
+print(shuffle(list_to_shuffle))
 
 list_to_sort_selective = [alea(1000) for _ in range(500)]
-print list_to_sort_selective
-print sort_selective(list_to_sort_selective)
+print(list_to_sort_selective)
+print(sort_selective(list_to_sort_selective))
 
 
 list_to_sort_bubble = [alea(1000) for _ in range(500)]
-print list_to_sort_bubble
-print sort_bubble(list_to_sort_bubble)
+print(list_to_sort_bubble)
+print(sort_bubble(list_to_sort_bubble))
