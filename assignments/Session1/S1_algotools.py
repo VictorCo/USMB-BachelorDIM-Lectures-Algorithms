@@ -18,7 +18,10 @@ def average_above_zero(table) :
     
     result = 0
     n_number = 0
-
+    
+    if not table:
+        raise ValueError("table is empty")
+        
     for number in table :
             
         if number > 0 :

@@ -14,7 +14,8 @@ from S1_algotools import *
 #Function : average_above_zero
 def test_averageAboveZero_emptyTable():
     table = []
-    assert average_above_zero(table) == 0.0
+    with pytest.raises(ValueError) :
+        average_above_zero(table)
 
 def test_averageAboveZero_noPostiveNumbers():
     table = [-1,-2,-4,-8]
