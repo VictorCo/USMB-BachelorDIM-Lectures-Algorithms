@@ -29,7 +29,7 @@ def average_above_zero(table) :
                 continue
         
     if n_number > 0 :
-        result /= n_number
+        result /= float(n_number)
         
     return float(result)
 
@@ -74,6 +74,9 @@ def reverse_table(table) :
 #@return cordinates of the objects 
 def roi_bbox(m_2d) :
 
+    if not isinstance(m_2d, numpy.ndarray):
+        raise ValueError("parameter is not a numpy array type")
+    
     x_min = 0
     x_max = m_2d.shape[1] - 1
     y_min = 0
@@ -108,7 +111,9 @@ def roi_bbox(m_2d) :
 #@param vfill how many cells do we want to fill in the table ?
 #@return table filled randomly
 def random_fill_sparse(table, vfill) :
-    
+
+    if not isinstance(table, numpy.ndarray):
+        raise ValueError("parameter is not a numpy array type")
     empty_cell = []
     i_coord = 0
 
@@ -134,7 +139,7 @@ def alea(v) :
 #@param table string where we want to remove its white spaces
 #@return a string whithout its white spaces
 def remove_whitespace(table) :
-    return "".join( [c for c in word if c not in " \n\t\r"] )
+    return "".join( [c for c in table if c not in " \n\t\r"] )
 
 
 ##shuffle a list
@@ -237,34 +242,38 @@ def sort_bubble(list_in) :
 
 
 #running time
-print(average_above_zero([1,2,3.2,"zpefk"]))
-print(max_value([1]))
-print(reverse_table([1,2,3,4,5]))
 
-tab = numpy.array([[0,0,0],
-                   [0,0,0],
-                   [1,1,1],
-                   [1,0,0],
-                   [1,0,0],
-                   [1,0,0]])
-print(roi_bbox(tab))
+if __name__ == '__main__' :
+    
+    print(average_above_zero([1,2,3.2,"zpefk"]))
+    print(max_value([1]))
+    print(reverse_table([1,2,3,4,5]))
 
-chartab = numpy.chararray((10,14))
-chartab[:] = "O"
-random_fill_sparse(chartab, 42)
-print(chartab)
+    tab = numpy.array([[0,0,0],
+                       [0,0,0],
+                       [1,1,1],
+                       [1,0,0],
+                       [1,0,0],
+                       [1,0,0]])
+    print(roi_bbox(tab))
 
-word = "\rzpzke\n    zepfok  \tfkpzeofk   "
-print(remove_whitespace(word))
+    chartab = numpy.chararray((10,14))
+    chartab[:] = "O"
+    random_fill_sparse(chartab, 42)
+    print(chartab)
 
-list_to_shuffle = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-print(shuffle(list_to_shuffle))
+    word = "\rzpzke\n    zepfok  \tfkpzeofk   "
+    print(remove_whitespace(word))
 
-list_to_sort_selective = [alea(1000) for _ in range(500)]
-print(list_to_sort_selective)
-print(sort_selective(list_to_sort_selective))
+    list_to_shuffle = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    print(shuffle(list_to_shuffle))
+
+    list_to_sort_selective = [alea(1000) for _ in range(500)]
+    print(list_to_sort_selective)
+    print(sort_selective(list_to_sort_selective))
 
 
-list_to_sort_bubble = [alea(1000) for _ in range(500)]
-print(list_to_sort_bubble)
-print(sort_bubble(list_to_sort_bubble))
+    list_to_sort_bubble = [alea(1000) for _ in range(500)]
+    print(list_to_sort_bubble)
+    print(sort_bubble(list_to_sort_bubble))
+
