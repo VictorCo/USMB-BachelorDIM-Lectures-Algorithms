@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+
+##
+#@author Victor Cominotti
+#@brief miscellaneous tools : global settings...
+
+#global settings
+settings = {}
+settings["default_queue"] = "rpc_queue"
+settings["url"] = "amqp://rrcieycj:5J4zugPSgWKzv264ta8jbex6q7r5FhvD@puma.rmq.cloudamqp.com/rrcieycj"
+
+#set of discussions
+#question -> q_x
+#response -> r_x
+settings["q_welcome"] = "hello, how are you ?"
+settings["r_welcome"] = "fine and you ?"
+settings["r_default"] = "I don't know what say to that"
+
+#test for serialization with message pack module
+settings["q_welcome"] = {"type":0, "value":"hello, how are you ?"}
+settings["r_welcome"] = {"type":1, "value":"fine and you ?"}
+settings["r_default"] = {"type":777, "value":"I don't know what say to that"}
