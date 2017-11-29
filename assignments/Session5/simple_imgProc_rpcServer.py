@@ -21,11 +21,11 @@ def on_request(ch, method, props, body) :
     request_param = str(body)
     decoded_message = msgpack.unpackb(request_param, object_hook=m.decode)
 
-    print("[X] Message received : {}".format(decoded_message["value"]))
-    response = find_response(decoded_message["value"])
+    print("[X] Message received : {}".format(decoded_message))
+    response = find_response(decoded_message)
     encoded_response = msgpack.packb(response, default = m.encode)
           
-    print("\t---> {}".format(response["value"]))
+    print("\t---> {}".format(response))
     
     ch.basic_publish(exchange = "",
                      routing_key = props.reply_to,
@@ -39,13 +39,12 @@ def on_request(ch, method, props, body) :
 ##Tell what say to the client
 #@param s : str which is the client's question
 #@return reponse of the question, if no reponse send the default reponse
-def find_response(s) :
-    print s
-    if s == settings["q_welcome"]["value"] :
-        return settings["r_welcome"]
+def find_response(m) :
+    if m["type"] in settings["filter_types"] :
+        return settings["filter_types"][m["type"]]
 
     #if no question entry, answer with the default answer
-    return settings["r_default"]
+    return settings["filter_types"]["none"]
 
 ##perform the connection
 def setup_connection() :
